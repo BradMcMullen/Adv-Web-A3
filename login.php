@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<!--index.html
-	Brad McMullen
-    Index for mobile website-->
+<!--login.php
+Brad McMullen
+PHP page containing the login form for the user-->
 <html>
     <head>
         <meta charset="utf-8" />

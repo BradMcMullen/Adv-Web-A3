@@ -1,3 +1,6 @@
+<!--logout.php
+Brad McMullen
+PHP for logging user out of the contacts page-->
 <?php
 session_destroy();
 session_start();

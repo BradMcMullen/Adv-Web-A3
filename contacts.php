@@ -1,21 +1,21 @@
+<!--contacts.php
+Brad McMullen
+PHP page for displaying contacts associated with users-->
 <?php
 session_start();
 
+//Kicks user back to login if they try to access this page without logging in
 if ($_SESSION['username'] =='') {
 	header('location:login.php');
 	exit;
 }
+//Gets database connection
 include('db/database.php');
 
-/*
-$username = mysql_real_escape_string($_POST['username']);
-$password = mysql_real_escape_string($_POST['password']);
-$username = stripslashes($username);
-$password = stripslashes($password);
-*/
 $username = $_SESSION['username'];
 $password = $_SESSION['password'];
 
+//Gets contacts associated with user
 $q = mysql_query("
 SELECT * FROM contacts WHERE name='$username' AND password='$password'
 ORDER BY cname;
@@ -125,8 +125,10 @@ $contacts[] = $row;
 				</tr>
 				
 				<?php 
+				//Displays contacts
 				foreach ($contacts as $contact):
 					echo "<tr><td>";?>
+					<!--Alert when you click on contacts name-->
 					<a href="" onClick="alert('Name: <?php echo htmlentities($contact['cname']) .'\nEmail: '. htmlentities($contact['cemail']).' \nPhone: ' . htmlentities($contact['cphone']). ' \nAddress: ' . htmlentities($contact['caddress']);?> ')"><?php echo htmlentities($contact['cname']); ?></a>
 					<?php
 					echo "</td><td>";?>

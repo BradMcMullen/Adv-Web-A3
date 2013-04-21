@@ -1,3 +1,6 @@
+<!--database.php
+Brad McMullen
+PHP for connecting to the database containing user and contact information-->
 <?php
 $host = "localhost";
 $username = "db200162912";

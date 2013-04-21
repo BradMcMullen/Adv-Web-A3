@@ -1,17 +1,19 @@
+<!--checklogin.php
+Brad McMullen
+PHP for checking that user exists and has entered correct password-->
 <?php
 session_start();
+/*Database connection is in this file*/
 include('db/database.php');
 
 //Get the username and password from the login form
-//Prevent SQL injections
 $username = mysql_real_escape_string($_POST['username']);
 $password = mysql_real_escape_string($_POST['password']);
 $username = stripslashes($username);
 $password = stripslashes($password);
 
 	
-//$username = mysql_real_escape_string($username);
-//$password = mysql_real_escape_string($password);
+//Selects username and password combo from database to make sure its a real user
 $sql = "SELECT * FROM $tbl_name WHERE username = '$username'
 and password = '$password'";
 $result = mysql_query($sql);
@@ -27,14 +29,7 @@ if($count == 1) {
 	die;
 }
 
-/*  //If the result match the $username && $password, table row will be 1
-if($count == 1) {
-    session_register('username');
-    session_register('password');
-    header('location:login_success.php');
-}*/
-
-//If it does not match, give a return message
+//If no user exists this message displays
 else {
     echo 'Wrong Username or Password';
 	?> <a href="http://webdesign4.georgianc.on.ca/~200162912/mobile/login.php">Click Here to return.</a><?php
